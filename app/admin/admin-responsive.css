@@ -1,0 +1,613 @@
+
+/* =====================================
+   PARABIN ADMIN RESPONSIVE STYLES
+   Works with Tailwind CSS v4
+===================================== */
+
+#parabin-admin {
+  --admin-sidebar-width: 270px;
+
+  min-height: 100dvh;
+  width: 100%;
+  min-width: 0;
+  background: var(--background);
+  color: var(--foreground);
+  overflow-x: clip;
+}
+
+#parabin-admin,
+#parabin-admin * {
+  box-sizing: border-box;
+}
+
+#parabin-admin button,
+#parabin-admin input,
+#parabin-admin textarea,
+#parabin-admin select {
+  font: inherit;
+}
+
+#parabin-admin button {
+  cursor: pointer;
+}
+
+#parabin-admin button:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+#parabin-admin a {
+  text-decoration: none;
+}
+
+/* =====================================
+   SIDEBAR
+===================================== */
+
+#parabin-admin .admin-sidebar {
+  position: fixed;
+  inset-block: 0;
+  right: 0;
+  z-index: 80;
+
+  display: flex;
+  flex-direction: column;
+
+  width: var(--admin-sidebar-width);
+  max-width: calc(100vw - 48px);
+  height: 100dvh;
+
+  background: var(--surface);
+  border-left: 1px solid var(--border-theme);
+
+  transform: translateX(0);
+  transition: transform 220ms ease;
+}
+
+#parabin-admin .admin-sidebar-brand {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+
+  min-height: 82px;
+  padding: 15px 18px;
+
+  border-bottom: 1px solid var(--border-theme);
+}
+
+#parabin-admin .admin-sidebar-scroll {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 20px 12px;
+  scrollbar-width: thin;
+}
+
+#parabin-admin .admin-menu-caption {
+  margin: 0 12px 12px;
+  color: var(--muted-text);
+  font-size: 11px;
+  font-weight: 600;
+}
+
+/* Override legacy global nav styles */
+#parabin-admin .admin-sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-start;
+
+  width: 100%;
+  gap: 5px;
+  margin: 0;
+  padding: 0;
+}
+
+#parabin-admin .admin-nav-item {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+
+  min-height: 46px;
+  width: 100%;
+  gap: 12px;
+  padding: 11px 13px;
+
+  border-radius: 11px;
+
+  color: var(--muted-text);
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.6;
+  white-space: normal;
+
+  transition:
+    background-color 180ms ease,
+    color 180ms ease;
+}
+
+#parabin-admin .admin-nav-item:hover {
+  background: var(--surface-secondary);
+  color: var(--foreground);
+}
+
+#parabin-admin .admin-nav-item.is-active {
+  background: color-mix(
+    in srgb,
+    var(--primary) 12%,
+    var(--surface)
+  );
+
+  color: var(--primary);
+  font-weight: 700;
+}
+
+#parabin-admin .admin-menu-divider {
+  width: 100%;
+  height: 1px;
+  margin: 22px 0;
+  background: var(--border-theme);
+}
+
+#parabin-admin .admin-sidebar-bottom {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+
+  padding: 14px;
+  border-top: 1px solid var(--border-theme);
+}
+
+#parabin-admin .admin-profile {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+
+  padding: 11px;
+  border-radius: 12px;
+  background: var(--surface-secondary);
+}
+
+#parabin-admin .admin-profile-icon {
+  display: flex;
+  flex: 0 0 42px;
+  align-items: center;
+  justify-content: center;
+
+  height: 42px;
+  border-radius: 12px;
+
+  color: var(--primary);
+  background: color-mix(
+    in srgb,
+    var(--primary) 12%,
+    transparent
+  );
+}
+
+#parabin-admin .admin-logout {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+
+  min-height: 43px;
+  width: 100%;
+
+  padding: 10px 14px;
+  border: 1px solid color-mix(
+    in srgb,
+    var(--danger) 25%,
+    transparent
+  );
+  border-radius: 11px;
+
+  background: color-mix(
+    in srgb,
+    var(--danger) 8%,
+    var(--surface)
+  );
+  color: var(--danger);
+
+  font-size: 13px;
+  font-weight: 600;
+}
+
+/* =====================================
+   MAIN CONTENT
+===================================== */
+
+#parabin-admin .admin-main {
+  min-height: 100dvh;
+  min-width: 0;
+  width: auto;
+  margin-right: var(--admin-sidebar-width);
+}
+
+#parabin-admin .admin-topbar {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+
+  min-height: 76px;
+  padding: 12px 28px;
+
+  border-bottom: 1px solid var(--border-theme);
+  background: var(--background);
+}
+
+#parabin-admin .admin-breadcrumb {
+  margin: 0 0 3px;
+  color: var(--muted-text);
+  font-size: 11px;
+}
+
+#parabin-admin .admin-topbar-title {
+  margin: 0;
+  color: var(--foreground);
+  font-size: 18px;
+  font-weight: 800;
+  line-height: 1.5;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+#parabin-admin .admin-topbar-actions {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: 10px;
+}
+
+#parabin-admin .admin-icon-button,
+#parabin-admin .admin-visit-site {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+
+  min-width: 42px;
+  height: 42px;
+  padding: 9px;
+
+  border: 1px solid var(--border-theme);
+  border-radius: 11px;
+
+  background: var(--surface);
+  color: var(--foreground);
+}
+
+#parabin-admin .admin-visit-site {
+  padding: 9px 14px;
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+#parabin-admin .admin-icon-button:hover,
+#parabin-admin .admin-visit-site:hover {
+  color: var(--primary);
+  border-color: var(--primary);
+}
+
+#parabin-admin .admin-mobile-only {
+  display: none;
+}
+
+#parabin-admin .admin-content {
+  width: 100%;
+  min-width: 0;
+  padding: 28px;
+}
+
+#parabin-admin .admin-content-inner {
+  width: 100%;
+  min-width: 0;
+  max-width: 1450px;
+  margin-inline: auto;
+}
+
+/* =====================================
+   DASHBOARD CARDS AND GRIDS
+===================================== */
+
+#parabin-admin .admin-content-inner > * {
+  min-width: 0;
+  max-width: 100%;
+}
+
+#parabin-admin .admin-content-inner
+.grid > * {
+  min-width: 0;
+}
+
+#parabin-admin .admin-content-inner
+.grid {
+  max-width: 100%;
+}
+
+#parabin-admin .admin-content-inner
+.rounded-2xl,
+#parabin-admin .admin-content-inner
+.rounded-xl {
+  overflow-wrap: anywhere;
+}
+
+/* Prevent long text and identifiers
+   from stretching cards */
+
+#parabin-admin .admin-content-inner
+p,
+#parabin-admin .admin-content-inner
+h2,
+#parabin-admin .admin-content-inner
+h3 {
+  overflow-wrap: anywhere;
+}
+
+/* =====================================
+   FORMS AND INPUTS
+===================================== */
+
+#parabin-admin .admin-content
+input:not([type="checkbox"]):not([type="radio"]),
+#parabin-admin .admin-content textarea,
+#parabin-admin .admin-content select {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+
+  border: 1px solid var(--border-theme);
+  border-radius: 12px;
+
+  background: var(--background);
+  color: var(--foreground);
+}
+
+#parabin-admin .admin-content
+input:focus,
+#parabin-admin .admin-content
+textarea:focus,
+#parabin-admin .admin-content
+select:focus {
+  border-color: var(--primary);
+  outline: 2px solid transparent;
+}
+
+#parabin-admin .admin-content
+input::placeholder,
+#parabin-admin .admin-content
+textarea::placeholder {
+  color: var(--muted-text);
+}
+
+#parabin-admin .admin-content
+textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+#parabin-admin .admin-content
+form {
+  min-width: 0;
+  max-width: 100%;
+}
+
+/* =====================================
+   TABLES
+===================================== */
+
+#parabin-admin .admin-content
+table {
+  border-collapse: collapse;
+}
+
+#parabin-admin .admin-content
+.overflow-x-auto {
+  max-width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* =====================================
+   MOBILE OVERLAY
+===================================== */
+
+#parabin-admin .admin-overlay {
+  display: none;
+}
+
+/* =====================================
+   TABLET AND MOBILE
+===================================== */
+
+@media (max-width: 1023px) {
+  #parabin-admin .admin-sidebar {
+    transform: translateX(105%);
+    box-shadow: none;
+  }
+
+  #parabin-admin .admin-sidebar.is-open {
+    transform: translateX(0);
+    box-shadow: -15px 0 55px rgba(0, 0, 0, .28);
+  }
+
+  #parabin-admin .admin-main {
+    width: 100%;
+    margin-right: 0;
+  }
+
+  #parabin-admin .admin-mobile-only {
+    display: inline-flex;
+  }
+
+  #parabin-admin .admin-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 75;
+
+    display: block;
+    width: 100%;
+    height: 100dvh;
+
+    border: none;
+    background: rgba(0, 0, 0, .55);
+  }
+
+  #parabin-admin .admin-topbar {
+    min-height: 70px;
+    padding: 12px 20px;
+  }
+
+  #parabin-admin .admin-content {
+    padding: 20px;
+  }
+}
+
+/* =====================================
+   SMALL MOBILE
+===================================== */
+
+@media (max-width: 639px) {
+  #parabin-admin .admin-sidebar {
+    width: min(290px, 86vw);
+  }
+
+  #parabin-admin .admin-topbar {
+    min-height: 66px;
+    padding: 10px 12px;
+    gap: 8px;
+  }
+
+  #parabin-admin .admin-topbar-title {
+    font-size: 14px;
+  }
+
+  #parabin-admin .admin-breadcrumb {
+    font-size: 10px;
+  }
+
+  #parabin-admin .admin-topbar-actions {
+    gap: 6px;
+  }
+
+  #parabin-admin .admin-icon-button,
+  #parabin-admin .admin-visit-site {
+    min-width: 39px;
+    height: 39px;
+    padding: 8px;
+  }
+
+  #parabin-admin .admin-visit-site span {
+    display: none;
+  }
+
+  #parabin-admin .admin-content {
+    padding: 15px 12px 28px;
+  }
+
+  #parabin-admin .admin-content-inner {
+    width: 100%;
+  }
+
+  /* Dashboard cards */
+  #parabin-admin .admin-content-inner
+  .grid {
+    gap: 12px;
+  }
+
+  #parabin-admin .admin-content-inner
+  .grid > a,
+  #parabin-admin .admin-content-inner
+  .grid > div {
+    min-width: 0;
+  }
+
+  /* Forms */
+  #parabin-admin .admin-content
+  form {
+    padding: 15px;
+  }
+
+  #parabin-admin .admin-content
+  form .grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  #parabin-admin .admin-content
+  form button[type="submit"] {
+    min-height: 44px;
+  }
+
+  /* Firm/article editor cards */
+  #parabin-admin .admin-content
+  button {
+    max-width: 100%;
+  }
+
+  #parabin-admin .admin-content
+  .flex-wrap {
+    flex-wrap: wrap;
+  }
+}
+
+/* Very small screens */
+@media (max-width: 359px) {
+  #parabin-admin .admin-content {
+    padding-inline: 9px;
+  }
+
+  #parabin-admin .admin-topbar {
+    padding-inline: 9px;
+  }
+
+  #parabin-admin .admin-topbar-title {
+    font-size: 12px;
+  }
+}
+
+/* =====================================
+   LIGHT AND DARK MODE
+===================================== */
+
+html[data-theme="light"]
+#parabin-admin {
+  color-scheme: light;
+}
+
+html[data-theme="dark"]
+#parabin-admin {
+  color-scheme: dark;
+}
+
+html[data-theme="light"]
+#parabin-admin .admin-topbar {
+  box-shadow: 0 1px 4px rgba(24, 52, 83, .04);
+}
+
+html[data-theme="light"]
+#parabin-admin .admin-sidebar {
+  box-shadow: -2px 0 12px rgba(28, 63, 99, .04);
+}
+
+/* =====================================
+   ACCESSIBILITY
+===================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  #parabin-admin .admin-sidebar,
+  #parabin-admin .admin-nav-item {
+    transition: none;
+  }
+}

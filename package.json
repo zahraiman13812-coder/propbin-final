@@ -1,0 +1,47 @@
+{
+  "name": "propin-prop-finder",
+  "version": "1.0.1",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "db:migrate": "node scripts/migrate-db.mjs",
+    "check:types": "tsc --noEmit",
+    "db:verify": "node scripts/db-verify.mjs",
+    "db:setup": "npm run db:migrate && npm run db:verify",
+    "preflight": "node scripts/preflight-handover.mjs",
+    "test": "node --test tests/*.cjs",
+    "test:db": "node --test tests/database.mjs",
+    "check": "npm test && npm run test:db && npm run check:types && npm run build"
+  },
+  "dependencies": {
+    "lucide-react": "^0.468.0",
+    "next": "^15.2.0",
+    "nodemailer": "^10.3.1",
+    "pg": "^8.16.3",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "server-only": "^0.0.1",
+    "@next/env": "15.5.28"
+  },
+  "devDependencies": {
+    "@electric-sql/pglite": "^0.5.15",
+    "@tailwindcss/postcss": "^4.1.0",
+    "@types/node": "^22.0.0",
+    "@types/nodemailer": "^8.0.2",
+    "@types/pg": "^8.15.5",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "tailwindcss": "^4.1.0",
+    "typescript": "^5.7.0"
+  },
+  "overrides": {
+    "next": {
+      "postcss": "^8.5.32"
+    }
+  },
+  "engines": {
+    "node": ">=22 <25"
+  }
+}
